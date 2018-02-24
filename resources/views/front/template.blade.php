@@ -9,6 +9,7 @@
     <meta name="author" content="Tiến Bình Thuận Ford 0902473757 Bình Thuận Ford - 0902 473 757 - Tiến Bình Thuận Ford Việt Nam" />
     <meta name="copyright" content="Bình Thuận Ford - 0902 473 757 - Tiến Bình Thuận Ford Việt Nam &#91;ntvu.binhthuanford@gmail.com&#93;" />
     <meta name="hotline" content="Tiến Bình Thuận Ford 0902473757 Bình Thuận Ford - 0902 473 757 - Tiến Bình Thuận Ford Việt Nam" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta property="og:title" content="Bình Thuận Ford - 0902 473 757 - Tiến Bình Thuận Ford Việt Nam" />
@@ -16,31 +17,36 @@
     <meta property="og:description" content="Bình Thuận Ford - 0902 473 757 - Tiến Bình Thuận Ford Việt Nam - Ford Explorer, Ford Ranger, Ford Everest, Ford Ecosport, Ford Transit, Ford Focus, Ford Fiesta Phan Thiết..." />
     <meta property="og:site_name" content="Bình Thuận Ford - 0902 473 757 - Tiến Bình Thuận Ford Việt Nam" />
     <meta property="og:url" content="http://muaxefordbinhthuan.com/" />
-    
-    
+        
     @yield('title')
 
     <link rel="icon" href="../../favicon.ico">
-    <link rel="apple-touch-icon" href="/themes/default/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
     <link rel="canonical" href="http://muaxefordbinhthuan.com/">
+    
+    @yield('head')
 
-    @include('layouts.css')
-
-    @yield('css')
-
+    <link href="/css/app.css" rel="stylesheet">
 </head>
 <body>
     <div class="wsmenucontainer clearfix">
         <div class="container theme-showcase" role="main">
-            @yield('content')       
+            @yield('main')       
         </div> <!-- /container -->
     </div>
-    @include('layouts.scripts')
 
+    <script src="/js/app.js"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
     @yield('scripts')
 </body>
 </html>
